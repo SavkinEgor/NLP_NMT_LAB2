@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 MAX_LENGTH = 82
-device = "cpu"
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 PAD_IDX = 1
 
 
