@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import TransformerEncoder, TransformerEncoderLayer
 
-MAX_LENGTH = 100
+MAX_LENGTH = 82
 device = "cpu"
 PAD_IDX = 1
 

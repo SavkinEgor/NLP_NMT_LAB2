@@ -8,7 +8,7 @@ import torch.nn.functional as F
 
 from torchtext.legacy.data import Field
 
-MAX_LENGTH = 100
+MAX_LENGTH = 82
 device = "cpu"
 PAD_IDX = 1
 
