@@ -1,37 +1,17 @@
 import random
 
-from nltk.tokenize import WordPunctTokenizer
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from torchtext.legacy.data import Field
 
 MAX_LENGTH = 82
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 PAD_IDX = 1
 
-tokenizer_W = WordPunctTokenizer()
-
-
-def tokenize(x, tokenizer=tokenizer_W):
-    return tokenizer.tokenize(x.lower())
-
-
-SRC = Field(tokenize=tokenize,
-            init_token='<sos>',
-            eos_token='<eos>',
-            lower=True)
-
-TRG = Field(tokenize=tokenize,
-            init_token='<sos>',
-            eos_token='<eos>',
-            lower=True)
-
 
 class Encoder(nn.Module):
-    def __init__(self, input_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False, SRC=SRC):
+    def __init__(self, input_dim, emb_dim, hid_dim, n_layers, dropout, SRC, bidirectional=False):
         super().__init__()
 
         self.input_dim = input_dim
@@ -72,7 +52,7 @@ class Encoder(nn.Module):
 
 
 class DecoderAttn(nn.Module):
-    def __init__(self, output_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False, max_length=MAX_LENGTH, TRG=TRG):
+    def __init__(self, output_dim, emb_dim, hid_dim, n_layers, dropout, TRG, bidirectional=False, max_length=MAX_LENGTH):
         super(DecoderAttn, self).__init__()
 
         self.emb_dim = emb_dim
