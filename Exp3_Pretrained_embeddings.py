@@ -31,7 +31,7 @@ TRG = Field(tokenize=tokenize,
 
 
 class Encoder(nn.Module):
-    def __init__(self, input_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False):
+    def __init__(self, input_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False, SRC=SRC):
         super().__init__()
 
         self.input_dim = input_dim
@@ -72,7 +72,7 @@ class Encoder(nn.Module):
 
 
 class DecoderAttn(nn.Module):
-    def __init__(self, output_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False, max_length=MAX_LENGTH):
+    def __init__(self, output_dim, emb_dim, hid_dim, n_layers, dropout, bidirectional=False, max_length=MAX_LENGTH, TRG=TRG):
         super(DecoderAttn, self).__init__()
 
         self.emb_dim = emb_dim
