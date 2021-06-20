@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
-MAX_LENGTH = 100
+MAX_LENGTH = 82
 device = "cpu"
 PAD_IDX = 1
 
@@ -69,7 +69,7 @@ class DecoderAttn(nn.Module):
         )
 
         self.attn = nn.Linear(self.hid_dim + self.emb_dim, self.max_length)
-        self.attn_combine = nn.Linear(self.hid_dim, self.emb_dim)
+        self.attn_combine = nn.Linear(self.hid_dim + self.emb_dim, self.emb_dim)
 
         self.out = nn.Linear(
             in_features=hid_dim,
